@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(246, 246, 231);
+}
+.nav-video{
+    width: auto;
+    height: 80px;
+    background-color: rgb(246, 246, 231);
+    border-radius: 20px;
+    border: 2px ridge red;
+    box-shadow: 0 4px 2px  0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.text-one{
+    text-align: center;
+    font-size: 60px;
+    color: red;
+    letter-spacing: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.main-body{
+    width: auto;
+    height: 600px;
+    background-color: rgb(246, 246, 231);
+    border-radius: 20px;
+    border: 3px ridge red;
+    margin-top: 10px;
+
+}
+.video-all{
+    border-radius: 20px;
+}

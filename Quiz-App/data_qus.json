@@ -1,0 +1,59 @@
+{
+    "ques":[
+        {
+            "id":1,
+            "qus":"What is React JS?",
+            "a":"frontend Library",
+            "b":"Php Framework",
+            "c":"Backend Framework",
+            "d":"None of the above",
+            "ans":"a"
+    },
+    {
+        "id":2,
+        "qus":"What is Node JS?",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Backend Framework",
+        "d":"None of the above",
+        "ans":"c"
+    },
+    {
+        "id":3,
+        "qus":"What is Vue JS?",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Backend Framework",
+        "d":"None of the above",
+        "ans":"a"
+    },
+    {
+        "id":4,
+        "qus":"What is Laravel?",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Backend Framework",
+        "d":"None of the above",
+        "ans":"b"
+    },
+    {
+        "id":5,
+        "qus":"What is Django?",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Backend Framework(Python)",
+        "d":"None of the above",
+        "ans":"c"
+    },
+    {
+        "id":6,
+        "qus":"What is Git?",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Version Control Sysytem",
+        "d":"None of the above",
+        "ans":"c"
+    }
+
+]
+}

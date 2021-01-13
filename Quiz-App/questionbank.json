@@ -1,0 +1,34 @@
+{
+    "question" : [
+    {
+        "id":1,
+        "qus":"What is React JS?",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Backend Framework",
+        "d":"None of the above",
+        "ans":"a"
+
+    },
+    {
+        "id":2,
+        "qus":"What is Node JS",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Backend Framework",
+        "d":"None of the above",
+        "ans":"a"
+
+    },
+    {
+        "id":3,
+        "qus":"What is React JS",
+        "a":"Javascript Library",
+        "b":"Php Framework",
+        "c":"Backend Framework",
+        "d":"None of the above",
+        "ans":"a"
+
+    }
+]
+}

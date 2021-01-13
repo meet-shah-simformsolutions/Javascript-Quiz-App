@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="css/democss.css">
+    <link rel="stylesheet" href="css/registration.css">
+    <script src="js/registration.js"></script>
+</head>
+    
+<body>
+    <header class="nav-main">
+        <nav>
+      <div class="flex-container" style="margin-bottom:15px">
+        <div><a href="demo_1.html">Home</a></div>
+        <div class="dropdown" style="margin-left: auto;">Video Tutorial
+          <div class="dropdown-content">
+            <a href="video-angular.html" target="_blank">Angular</a>
+            <a href="video-react.html" target="_blank">React</a>
+            <a href="video-vue.html" target="_blank">Vue</a>
+            <a href="video-node.html" target="_blank">Node</a>
+          </div>
+        </div>
+        
+      </div>
+		</nav>
+    </header>
+    <section>
+        <div class="main-registration">
+            <div class="sub-registration">
+                <img src="img/reg-logo.png"  class="reg-logo" alt="reg-logo">
+            </div>
+            <!--<hr>-->
+            <div class="main-data">
+                <form action="" name="myform">
+                <div class="reg-name-email" >
+                    <div class="reg-flex-container">
+                        <div class="reg-name" style="margin: 0px; padding-top:18px">
+                            
+                            <label for="Name"  class="l1">Name</label>
+                            <input class="i1"  name="sname" type="text" maxlength="50" size="50"  required placeholder="Enter Your Name">
+                           
+                        </div>
+                        <div class="reg-email" style="margin: 0px;  padding-top:18px">
+                            <label for="email" class="l2" >Email</label>
+                            <input autocomplete="" name="email" type="email"class="i2" maxlength="50" size="50"  required placeholder="Enter Your Email">
+                        </div>
+                    </div>
+                </div>
+                <div class="reg-tel-drop" >
+                    <div class="reg-flex-container">
+                        <div class="reg-tel" style="margin: 0px; padding-top:18px">
+                            <label for="tel"  class="l3">Phone</label>
+                            <input class="i3" type="tel"  name="phone" maxlength="50" size="50"required placeholder="Enter Your Phone-Number">
+                        </div>
+                        <div class="reg-topic" style="margin: 0px;  padding-top:18px">
+                            <label for="Name" class="l4" >Topic</label>
+                            <select class="i4" name="cars" >
+                               <div class="option-style">
+                                    <option value="Angular">Angular</option>
+                                    <option value="React">React</option>
+                                    <option value="Vue">Vue</option>
+                                    <option value="Node">Node</option>
+                                </div> 
+                              </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="reg-future-goal" >
+                    <div class="reg-flex-container">
+                        <div class="reg-goal" style="margin: 0px; padding-top:18px;">
+                            <label for="future-goal"  class="l5" >Future Goal</label>
+                            <input class="i5" type="text" style="margin-right: 100px;" maxlength="50" size="50"required placeholder="Enter your Future Goal">
+                        </div>
+                        <div class="reg-date" style="margin: 0px;  padding-top:18px">
+                            <label for="date" class="l6" >Date</label>
+                            <input type="date"class="i6" required >
+                        </div>
+                    </div>
+                </div>
+                <div class="reg-submit" >
+                    <div class="reg-flex-container" style="justify-content: center;">
+                        <div class="submit-button" style="width: 300px;">
+                            <a href="registration.html"> <input type="submit" class="button1" value="Submit"></a>
+                        </div>
+                    
+                    </div>
+                </div>
+                </form>
+            </div>
+            
+        </div>
+        
+
+
+
+    </section>
+    <footer>
+
+    </footer>
+</body>
+</html>

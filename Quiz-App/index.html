@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="css/democss.css">
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    
+    <!-- <script src="https://use.fontawesome.com/d7966d57c7.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body onload="getName()">
+  <audio id="audio_wrong">
+    <source src="audio/Wrong-answer-sound-effect.ogg" type="audio/ogg">
+    <source src="audio/Wrong-answer-sound-effect.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="audio_right">
+    <source src="audio/right_sound.ogg" type="audio/ogg">
+    <source src="audio/right_sound.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <script>
+    var sound_wrong = document.getElementById("audio_wrong");
+    var sound_right = document.getElementById("audio_right");
+    var ans_count = 0;
+    var accuracy = 0;
+    var score = 0;
+    var sound_count=false;
+    var score_no = parseInt(score);
+    var right_ans, wrong_ans;
+    right_ans = 0;
+    wrong_ans = 0;
+    //document.addEventListener('contextmenu', event => event.preventDefault()); /*Disable right click*/
+    function change_state(){
+   
+      let x = document.getElementById("sound_manage");
+      
+      x.classList.toggle("fa-volume-up");
+      if(sound_count==false){
+      sound_count=true;
+      }
+      else{
+        sound_count=false;
+      }
+      
+      /*x.classList.remove("fa-volume-up");
+      x.classList.add("fa-volume-off");      */
+    }
+    
+    function getName() {
+            gname = sessionStorage.getItem("gname")
+            if(gname != undefined)
+            {
+              alert("Best of luck " + gname + "\nWelcome to Quiz");
+              document.getElementById("welcome").innerHTML= `Name: ${gname}`;
+              var score_storage = localStorage.getItem("score");
+              document.getElementById("score").innerHTML = `Score: ${score_storage}`;
+              
+              main_content();
+            }
+            else
+            {
+              name = prompt("Enter Your Name","Rag");
+              sessionStorage.setItem("gname",name);
+              document.getElementById("welcome").innerHTML= `Name: ${name}`;
+              document.getElementById("score").innerHTML = `Score: ${score}`;
+              
+              main_content();
+              
+            }
+       
+    }
+
+
+
+
+    function check_option_value(){
+      let counter = 0;
+     var radList = document.getElementsByName('q1');
+      for (var i = 0; i < radList.length; i++) {
+        if(radList[i].checked) 
+        {
+          counter++;
+        }
+      }
+    if(counter == 0){
+        alert("Select one option");
+        return
+       }
+     }
+     function accuracy_data(){
+      console.log(accuracy);
+      accuracy = String(((parseFloat(right_ans/(ans_count-1)).toFixed(2))*100).toFixed(2));
+   
+      document.getElementById("accuracy").innerHTML = `Accuracy: ${accuracy}%`;
+      localStorage.setItem("Accuracy",accuracy);
+     }
+
+
+
+      function  check_ans(y){
+      check_option_value(); 
+      var radio_data = document.querySelector('input[name="q1"]:checked').value;
+      
+      if(radio_data == y){
+        sound_count_validate_right();
+        document.getElementById(radio_data).style.color="Green";
+        document.getElementById(radio_data).style.fontWeight="bold";
+        setTimeout(main_content,2500);
+        score_no = score_no + 5;
+        score_string = String(score_no)
+        localStorage.setItem("score",score_string);
+        right_ans++;
+        document.getElementById("score").innerHTML = `Score: ${score_no}`;
+      }
+      else{
+        console.log("i am in");
+        sound_count_validate_wrong();
+        document.getElementById(radio_data).style.color="red";
+        document.getElementById(radio_data).style.fontWeight="bold";
+        score_no = score_no - 5;
+        score_string = String(score_no)
+        localStorage.setItem("score",score_string);
+        wrong_ans++;
+        document.getElementById("score").innerHTML = `Score: ${score_no}`;
+        setTimeout(main_content,2000);
+      }
+      
+    }
+    function sound_count_validate_right(){
+      if(sound_count==true){
+        sound_right.play();
+        sound_right.volume = 0.3;
+      }
+      return
+    }
+    function sound_count_validate_wrong(){
+      if(sound_count==true){
+        sound_wrong.play();
+        sound_wrong.volume = 0.1;
+      }
+      return
+    }
+    function remove_prev_style(){
+      var x, i, z;
+      x = document.querySelectorAll(".option_data");
+      var radList = document.getElementsByName('q1');
+      for (var i = 0; i < radList.length; i++) {
+        if(radList[i].checked) 
+        { 
+          radList[i].checked = false;
+        }
+      }
+      for (i = 0; i < x.length; i++) {
+        x[i].style.color="black";
+        x[i].style.fontWeight="normal";
+      }
+
+    }
+    function rmv_accuracy(){  
+      localStorage.removeItem("Accuracy");
+      console.log("accuracy removed");
+      document.getElementById("accuracy").innerHTML = `Accuracy: ${localStorage.getItem("Accuracy")}`;
+    }
+    function reset_data(){
+      localStorage.removeItem("score");
+      console.log("reset score",score);
+      document.getElementById("score").innerHTML = `Score: ${localStorage.getItem("score")}`;
+      rmv_accuracy();
+      location.reload();
+    }
+
+    function main_content(){
+     
+      
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(xhttp.responseText);
+       var question = response.ques;
+        var len = question.length;
+        var no = Math.floor(Math.random() * len);
+        var prev = no;
+        ans_count++;
+        remove_prev_style();
+        document.getElementById("qus").innerHTML = question[no]["qus"];
+        accuracy_data();
+        document.getElementById("a").innerHTML = question[no]["a"];
+        document.getElementById("b").innerHTML = question[no]["b"];
+        document.getElementById("c").innerHTML = question[no]["c"];
+        document.getElementById("d").innerHTML = question[no]["d"];
+        var x = question[no]["ans"];
+        document.getElementById("check").onclick = function() {check_ans(x);};
+        document.getElementById("reset").onclick = function() {reset_data(x);};
+        document.getElementById("sound_manage").onclick= function() {change_state();};
+    }
+    
+  };
+    xhttp.open("GET", "data_qus.json", true);
+    xhttp.send();
+}
+    </script>
+    <header class="nav-main">
+        <nav>
+      <div class="flex-container" style="margin-bottom:35px;">
+        <div><a href="demo_1.html">Home</a></div>
+        <div class="quiz_title">Quiz</div>
+        <div class="welcome_title" id="welcome"></div>
+        <div class="score_title" id="score"></div>
+        <div class="accuracy" id="accuracy"></div>
+        <div class="reset" id="reset">Reset</div>
+        <div class="sound_manage" >
+        <i class="fa fa-volume-off" id="sound_manage" aria-hidden="true"></i></div>
+        <!-- <i class="fa fa-volume-off" id="sound_manage" aria-hidden="false"></i> -->
+        <!-- <div class="dropdown" style="margin-left: auto;">Video Tutorial
+          <div class="dropdown-content">
+            <a href="video-angular.html" target="_blank">Angular</a>
+            <a href="video-react.html" target="_blank">React</a>
+            <a href="video-vue.html" target="_blank">Vue</a>
+            <a href="video-node.html" target="_blank">Node</a>
+          </div>  
+        </div> -->
+        
+      </div>
+		</nav>
+    </header>
+    <section>
+        <div class="main">
+            <div class="card">
+                <div class="question" id="qus" style="display: flex; justify-content: center;align-items: center;">
+                  
+                </div>
+                <div class="option">
+                    <div class="grid-container">
+                        <div><input type="radio"  class="radio_btn" name="q1" value="a"><div  id="a" class="option_data"><br>
+                        </div><small class="ack"></small></div>
+                        <div><input type="radio" class="radio_btn" name="q1" value="b"><div id="b" class="option_data"></div>
+                        <small class="ack"></small></div>
+                        <div><input type="radio" class="radio_btn" name="q1" value="c"><div id="c" class="option_data"></div>
+                        <small class="ack"></small></div>  
+                        <div><input type="radio" class="radio_btn" name="q1" value="d"><div id="d" class="option_data"></div>
+                        <small class="ack"></small></div>
+                      </div>
+                </div>
+                <div class="buttons">
+                    <!-- <input type="button" class="prev_btn" value="Prev"> -->
+                    <input type="button" class="prev_btn" style="margin-right: 10px;" id="check" style="float:left"  value="Check">
+                    <input type="button"  class="next_btn" onclick="main_content()" value="Skip">
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+
+    </footer>
+</body>
+</html>
